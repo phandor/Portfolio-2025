@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLâm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    :root {
+    --primary: #8b6175;
+    --secondary: #F5F5F5; 
+    --accent: #D4AFB9;
+    --text: #333333;
+    --white: #FFFFFF;
+    --black: #222222;
+    --blue: #7A9CC6;
+    --star: #FFD700;
+    --grey: #999;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;    
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 1vh;
+}
+
+.container {
+    margin: 0 4vh;
+    padding: 0 20px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    padding: 20px 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 15px 0;
+    background-color: rgba(255,255,255,0.95);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-container p {
+    font-size: 12px;
+    font-family:'Montserrat', sans-serif;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: 0;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--white);
+    margin-left: 15px;
+}
+
+.btn-outline:hover {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #666;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    padding: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-img {
+    height: 45vh;
+    overflow: hidden;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-img img {
+    transform: scale(1.1);
+}
+
+.service-content {
+    padding: 25px;
+}
+
+.service-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.service-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.service-price {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.gallery-section {
+    background-color: var(--secondary);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    padding: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.music-section {
+    background-color: var(--black);
+}
+
+.music-section .section-title h2,
+.music-section .section-title p {
+    color: var(--white);
+}
+
+.playlists {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.playlist-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-10px);
+}
+
+.playlist-img {
+    height: 250px;
+}
+
+.playlist-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playlist-info {
+    padding: 15px;
+    color: var(--black);
+}
+
+.playlist-info h3 {
+    margin-bottom: 10px;
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.review-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.stars {
+    color: var(--star);
+    margin-bottom: 15px;
+}
+
+.review-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.review-text::before,
+.review-text::after {
+    content: '"';
+    font-size: 24px;
+    color: var(--accent);
+    opacity: 0.5;
+}
+
+.review-author {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.google-reviews-btn {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.contact-section {
+    background-color: var(--secondary);
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.contact-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    margin-bottom: 15px;
+}
+
+.contact-card a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: var(--accent);
+}
+
+.booking-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group textarea {
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.map-locations {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 7vh;
+}
+
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 50px 0 20px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links {
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 1001;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-nails {
+    margin-top: 1vh;
+}
+
+.btn-beauty {
+    margin-top: 1vh;
+}
+
+.btn-nails:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-beauty:hover {
+    background-color: var(--blue);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.location-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.badge-nails {
+    background-color: rgba(212, 175, 185, 0.2);
+    color: var(--nail-accent);
+}
+
+.badge-beauty {
+    background-color: rgba(154, 183, 211, 0.2);
+    color: var(--beauty-accent);
+}
+
+.dual-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+
+.nails, .beauty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+}
+
+.nails {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('src/mylam-nagelstudio.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.beauty {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('src/mylam-beauty.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 80%;
+    padding: 20px;
+    z-index: 2;
+}
+
+.hero-content p {
+    margin-bottom: 1vh;
+}
+
+.hero-content h1 {
+    margin-bottom: 0;
+}
+
+.hero-divider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    width: 1px;
+    height: 60%;
+    opacity: 0.3;
+}
+
+.services-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.tab-btn {
+    padding: 15px 30px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    color: var(--grey);
+}
+
+.tab-btn.active {
+    color: var(--black);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.tab-btn-nails.active::after {
+    background-color: var(--nail-accent);
+}
+
+.tab-btn-beauty.active::after {
+    background-color: var(--beauty-accent);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-tabs {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.form-tab-btn.active {
+    border-bottom-color: var(--nail-accent);
+}
+
+.form-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.form-tabs { 
+    display: flex; 
+    margin-bottom: 20px; 
+}
+
+.form-tab-btn { 
+    flex: 1;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 20px; 
+    border: none; 
+    background: var(--secondary);
+    cursor: pointer;
+}
+.form-tab-btn.active { background: var(--accent); color: var(--white); }
+.beauty.active { background: var(--blue); }
+.nails.active { background: var(--accent); }
+.tab-form { display: none; padding: 20px; border: 1px solid var(--secondary); }
+.tab-form.active { display: block; }
+
+@media (max-width: 992px) {
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .map-locations {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .service-card {
+        padding: 0;
+    }
+
+    .nav-container p {
+        margin-right: 2vh;
+    }
+
+    .dual-hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .nails, .beauty {
+        height: 50vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        transition: left 0.3s ease;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .menu-toggle.active::before {
+        content: '✕';
+    }
+    
+    .menu-toggle:not(.active)::before {
+        content: '☰';
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">MyLâm <p>Wo Schönheit sich wie Zuhause anfühlt – nur mit Termin.</p></a>
+            <div class="menu-toggle">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Angebote</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#music">Playlists</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="dual-hero">
+        <div class="nails">
+            <div class="hero-content">
+                <h1>MyLâm Nagelstudio</h1>
+                <p>Nagelstudio in Ettlingen</p>
+                <a href="#contact" class="btn btn-nails">Termin vereinbaren</a>
+                <a href="https://www.instagram.com/mylamnagelstudio/" target="_blank" class="btn btn-nails"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/mylamnagelstudio/" target="_blank" class="btn btn-nails"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+        
+        <div class="beauty">
+            <div class="hero-content">
+                <h1>MyLâm Beauty</h1>
+                <p>Kosmetikstudio in Bruchhausen</p>
+                <a href="#contact" class="btn btn-beauty">Termin vereinbaren</a>
+                <a href="https://www.instagram.com/mylambeauty/?hl=en" target="_blank" class="btn btn-beauty"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/mylambeauty/" target="_blank" class="btn btn-beauty"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unsere Angebote</h2>
+                <p>Die Preise können je nach individuellen Wünschen variieren.</p>
+            </div>
+            
+            <div class="services-tabs">
+                <button class="tab-btn tab-btn-nails active" data-tab="nails">MyLâm Nagelstudio</button>
+                <button class="tab-btn tab-btn-beauty" data-tab="beauty">MyLâm Beauty</button>
+            </div>
+            
+            <div class="tab-content active" id="nails-tab">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/maniküre.png" alt="Maniküre">
+                        </div>
+                        <div class="service-content">
+                            <h3>Maniküre<span class="location-badge badge-nails">MyLâm Nagelstudio</span></h3>
+                            <p>Unsere Maniküre mit entspannender Handmassage, Cuticle-Pflege und hochwertigem Nagellack Ihrer Wahl.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/pediküre.png" alt="Pediküre">
+                        </div>
+                        <div class="service-content">
+                            <h3>Pediküre<span class="location-badge badge-nails">MyLâm Nagelstudio</span></h3>
+                            <p>Verwöhnen Sie sich mit unserer Pediküre – inklusive Peeling, Massage und premium Nagellack.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/mylam-nagelstudio-galerie4.png" alt="Gel">
+                        </div>
+                        <div class="service-content">
+                            <h3>Gel Nägel<span class="location-badge badge-nails">MyLâm Nagelstudio</span></h3>
+                            <p>Ihre perfekte Länge, leicht & langlebig: Unsere Gel-Extensions halten 3+ Wochen.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/mylam-nagelstudio-galerie6.png" alt="Acryl">
+                        </div>
+                        <div class="service-content">
+                            <h3>Acryl Nägel<span class="location-badge badge-nails">MyLâm Nagelstudio</span></h3>
+                            <p>Von Pinselstrich bis Detailverliebtheit: Unsere Acryl-Extensions werden zur Leinwand für eure Wunschmotive.</p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            
+            <div class="tab-content" id="beauty-tab">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/Wimpernkrankzverdichtung.png" alt="Facials">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wimpernkrankzverdichtung<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Natürliche Wimpern werden sanft gehoben und intensiviert für einen wachwirkenden Look.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/Aquarell-lips.png" alt="Aquarell Lips">
+                        </div>
+                        <div class="service-content">
+                            <h3>Aquarell Lips<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Zarte Farbverläufe mit Pigmentierung für einen frischen, natürlichen Look.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/Powderbrows.png" alt="Powderbrows">
+                        </div>
+                        <div class="service-content">
+                            <h3>Powderbrows<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Natürlich verlaufende Mikropigmentierung für perfekt definierte Augenbrauen.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/2d-wet-set.png" alt="2D Wet Set">
+                        </div>
+                        <div class="service-content">
+                            <h3>2D Wet Set<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Glänzend-schwere Wimpernextensions für einen intensiven, glamourösen Augenaufschlag.</p>
+                        </div>
+                    </div> 
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/soft-volumen.png" alt="Wimpernverlängerung Soft Volumen">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wimpernverlängerung Soft Volumen<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Sanftes Volumen mit der 2:1-Technik: Zwei Extensions pro natürlicher Wimper für eine dezente, aber spürbare Dichte.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/kim-k.png" alt="Wimpernverlängerung Kim K Look">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wimpernverlängerung Kim K Look<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Voluminöse Wimpernverlängerung für einen intensiven, glamourösen Look</p>
+                        </div>
+                    </div>        
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/Wimpernverlängerung1zu1.png" alt="Wimpernverlängerung 1:1 Technik">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wimpernverlängerung 1:1 Technik<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Natürlich voluminöser Look durch 1:1 Verlängerung - jede einzelne Wimper wird individuell verlängert</p>
+                        </div>
+                    </div>    
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <img src="src/wimpernverlängerung.png" alt="Wimpernlifting">
+                        </div>
+                        <div class="service-content">
+                            <h3>Wimpernlifting<span class="location-badge badge-beauty">MyLâm Beauty</span></h3>
+                            <p>Blabla was das ist</p>
+                        </div>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kommen Sie vorbei</h2>
+                <p>Wir freuen uns auf Sie</p>
+            </div>
+            
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt" style="color: var(--nail-accent);"></i>
+                    <h3>MyLâm Nagelstudio</h3>
+                    <p>Martinsgasse 8A<br>76275 Ettlingen</p>
+                    <p><a href="tel:072437188922">07243 7188922</a></p>
+                    <p>Montag - Freitag: 9 Uhr - 19 Uhr<br>
+                       Samstag: 8:30 Uhr - 18.30 Uhr
+                    </p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt" style="color: var(--beauty-accent);"></i>
+                    <h3>MyLâm Beauty</h3>
+                    <p>Felchenweg 2<br>76275 Ettlingen</p>
+                    <p><a href="tel: 017632043398">0176 32043398</a></p>
+                    <p>Montag - Samstag: 8 Uhr - 18 Uhr</p>
+                </div>
+            </div>
+            
+            <div class="booking-form">
+                <div class="form-tabs">
+                    <button class="form-tab-btn active" data-form="nails">Nagelstudio Termin</button>
+                    <button class="form-tab-btn beauty" data-form="beauty">Kosmetikstudio Termin</button>
+                </div>
+                
+                <form id="nails-form" class="tab-form active">
+                    <h3>Nagelstudio Termin</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="E-Mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefonnummer" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Wählen Sie das Angebot</option>
+                            <option>Maniküre</option>
+                            <option>Pediküre</option>
+                            <option>Gel Nägel</option>
+                            <option>Acryl Nägel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required>
+                    </div>
+                    <button type="submit" class="btn btn-nails submit-btn">Termin vereinbaren</button>
+                </form>
+                
+                <form id="beauty-form" class="tab-form">
+                    <h3>Kosmetikstudio Terminvereinbarung</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="E-Mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefonnummer" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Wählen Sie das Angebot</option>
+                            <option>Wimpernkrankzverdichtung</option>
+                            <option>Aquarell Lips</option>
+                            <option>Powderbrows</option>
+                            <option>2D Wet Set</option>
+                            <option>Wimpernverlängerung Soft Volumen</option>
+                            <option>Wimpernverlängerung Kim K Look</option>
+                            <option>Wimpernverlängerung 1:1 Technik</option>
+                            <option>Wimpernlifting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required>
+                    </div>
+                    <button type="submit" class="btn btn-beauty submit-btn">Termin vereinbaren</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Design Galerie</h2>
+                <a href="#"><p>Mehr Designs finden Sie auf unseren social media accounts</p></a>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie1.png" alt="Gel Nägel">
+                    <div class="gallery-overlay">
+                        <h3>Gel Nägel</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie2.png" alt="Marble nails">
+                    <div class="gallery-overlay">
+                        <h3>Marble Design</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie3.png" alt="Gold foil nails">
+                    <div class="gallery-overlay">
+                        <h3>Gold Foil Accents</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie4.png" alt="Ombre nails">
+                    <div class="gallery-overlay">
+                        <h3>Ombré Effect</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie5.png" alt="Glitter nails">
+                    <div class="gallery-overlay">
+                        <h3>Sparkling Glitter</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="src/mylam-nagelstudio-galerie6.png" alt="Floral nails">
+                    <div class="gallery-overlay">
+                        <h3>Floral Art</h3>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kunden Reviews</h2>
+            </div>
+                       
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Sehr nett und zuvorkommend, gehen auf individuelle Wünsche ein
+                    Bin immer zufrieden und glücklich, wenn ich nach Hause gehe</p>
+                    <p class="review-author">- Christa Heusler</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Dieses Nagelstudio ist top. Wunderschöne Nägel und immer wird sehr sauber gearbeitet. Hier wird viel Wert auf Hygiene gelegt. Alles ist desinfiziert und sauber. Die Nägel sind wunderschön und wenn ich mit meinen speziellen Vorstellungen komme und die Nägel bemalt haben wollte, hat er das bisher immer wunderschön und genau so wie ich es wollte umgesetzt. ❤️
+                    Danke ❤️</p>
+                    <p class="review-author">- Jasmin J.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Ich war bei Cindy schon so oft, um mir meine Wimpern hübsch machen zu lassen oder meine Fingernägel. Würde immer wieder zu ihr gehen.</p>
+                    <p class="review-author">- Leonie Pöschl</p>
+                </div>   
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Ich kann mich den positiven Bewertungen nur anschließen.
+                    In diesem Studio fühle ich mich sehr gut aufgehoben. Cindy arbeitet professionell und ich bin mit dem Ergebnis immer zufrieden.</p>
+                    <p class="review-author">- Claire Knieper</p>
+                </div>  
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Tolles Personal, tolle Arbeit - es wird mit Perfektion gearbeitet :)
+                    bestes Nagelstudio, ich gehe mittlerweile schon über ein Jahr dort hin. Immer zufrieden gewesen 😊</p>
+                    <p class="review-author">- Italia Valeria</p>
+                </div>                  
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">❤️lichen Dank für diesen tollen Service
+                    War das aller erste mal in einem Nagelstudio da ich mir bisher immer meine Nägel selber gemacht habe. Und ich weiß was das für ein Aufwand ist, wenn man schöne Nägel haben möchte. Dann sind ruckzuck 8 Stunden weg mit allem Drumherum. Aus zeitlichen Gründen habe ich einen Termin gemacht und meine Wünsche wurden für Hände und Füße in nur 3 Stunden in die Tat umgesetzt .
+                    Ich werde auf alle Fälle wieder hingehen
+                    Super sauberes und genaues arbeiten !! DANKE nochmal
+                    Und noch eins
+                    Der Preis ist angemessen für diese Kunstwerke</p>
+                    <p class="review-author">- Ramona Kick.</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Sehr freundlich, sehr angenehm, alles war perfekt, endlich eine Nagelstudio die achtet das die Kunde sich wohlfühlt, sonst hätte ich immer Angst das es zuviel angefüllt wird, oder das mein Nagelbett verletzt wird, hier war alles sehr, sehr gut. Während ich die Fußnagel Behandlung bekam, habe ich 2x massage bekommen, am Anfang und am Ende, das ist auch Service..... das war so gut. Ich habe sofort mein zweite Termin gemacht.</p>
+                    <p class="review-author">- Nancy Nazire Channah</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Hier stimmt alles. Sehr freundlich. Saubere Arbeit. Kann man nur empfehlen. In 5 Wochen wieder.</p>
+                    <p class="review-author">- Martin Lutz</p>
+                </div>                
+            </div>            
+            <a href="https://www.google.com/search?q=MyLâm+Ettlingen+reviews" target="_blank" class="btn google-reviews-btn">Mehr Reviews lesen</a>
+        </div>
+    </section>
+    
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unsere Standorte</h2>
+            </div>
+            
+            <div class="map-locations">
+                <div>
+                    <h3>MyLâm Nagelstudio</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.682132594745!2d8.405282076529826!3d48.940495894924815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47970583c67b4cf1%3A0x587f6d028497dc59!2sMartinsgasse%208A%2C%2076275%20Ettlingen!5e0!3m2!1sen!2sde!4v1749420660315!5m2!1sen!2sde" height="300" style="border:0; width:100%;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div>
+                    <h3>MyLâm Beauty</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.555062630525!2d8.367906976529007!3d48.92386879609626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4797051993b78959%3A0xcca6f08e617da309!2sFelchenweg%202%2C%2076275%20Ettlingen!5e0!3m2!1sen!2sde!4v1749420747189!5m2!1sen!2sde" height="300" style="border:0; width:100%;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="music-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Unsere Studio Playlists</h2>
+                <p>Genießen Sie die gleiche entspannende Musik,
+                die wir in unserem Studio spielen</p>
+            </div>
+            
+            <div class="playlists">
+                <a href="https://open.spotify.com/playlist/4MhYCdWTLvkA69MFV1ouXB?si=4ef64effdd6049fe" target="_blank" class="playlist-card">
+                    <div class="playlist-img">
+                        <img src="src/spotify.png" alt="MyLâm">
+                    </div>
+                    <div class="playlist-info">
+                        <h3>mylam</h3>
+                        <p>Entspannte RnB Musik</p>
+                    </div>
+                </a>
+                                
+                <a href="https://open.spotify.com/playlist/3kG38UiFypVaJQNBQgCZim?si=e81f66c42bfb4f0a" target="_blank" class="playlist-card">
+                    <div class="playlist-img">
+                        <img src="src/spotify3.png" alt="MyLâm2">
+                    </div>
+                    <div class="playlist-info">
+                        <h3>mylam2</h3>
+                        <p>Weitere RnB Musik</p>
+                    </div>
+                </a>
+
+                <a href="https://open.spotify.com/playlist/0vPM7kgZ7zdFYSw5tQueMT?si=SBCs0802S0Wiy9sOOSPdkw" target="_blank" class="playlist-card">
+                    <div class="playlist-img">
+                        <img src="src/spotify1.png" alt="Me">
+                    </div>
+                    <div class="playlist-info">
+                        <h3>mylam fs24</h3>
+                        <p>Sommer Playlist</p>
+                    </div>
+                </a>
+
+                <a href="https://open.spotify.com/playlist/5WuQKd86rkInww7MK8mqur?si=eO7g-CHITjG6Q6GCM7GGxA" target="_blank" class="playlist-card">
+                    <div class="playlist-img">
+                        <img src="src/spotify2.png" alt="MyLâm2">
+                    </div>
+                    <div class="playlist-info">
+                        <h3>mylam xmas24</h3>
+                        <p>Winter Playlist</p>
+                    </div>
+                </a>                
+            </div>
+        </div>
+    </section>    
+    
+   
+    <footer>
+        <p>&copy; 2025 MyLâm. Alle Rechte vorbehalten.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        });
+        
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                btn.classList.add('active');
+
+                tabContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const formTabBtns = document.querySelectorAll('.form-tab-btn');
+            const tabForms = document.querySelectorAll('.tab-form');
+            
+            formTabBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const formId = btn.getAttribute('data-form');
+
+                    formTabBtns.forEach(btn => btn.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    tabForms.forEach(form => form.classList.remove('active'));
+                    document.getElementById(`${formId}-form`).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
